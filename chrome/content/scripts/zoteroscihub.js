@@ -19,7 +19,7 @@ Zotero.Scihub.init = function() {
   window.addEventListener('unload', function(e) {
       Zotero.Notifier.unregisterObserver(notifierID);
   }, false);
-}
+};
 
 Zotero.Scihub.notifierCallback = {
   notify: function(event, type, ids, extraData) {
@@ -27,7 +27,7 @@ Zotero.Scihub.notifierCallback = {
       Zotero.Scihub.updateItems(Zotero.Items.get(ids));
     }
   }
-}
+};
 
 Zotero.Scihub.resetState = function() {
   Zotero.Scihub.current = -1;
@@ -130,6 +130,7 @@ Zotero.Scihub.updateItem = function(item) {
 
     // Add SCIHUB link to item
     item.setField('Extra', url)
+    item.save();
 
     //req.onreadystatechange = function() {
       // Get Scihub pdf and add to item.
@@ -140,9 +141,10 @@ Zotero.Scihub.updateItem = function(item) {
 
 if (typeof window !== 'undefined') {
     window.addEventListener('load', function(e) {
-        alert("Loading scihub plugin");
         Zotero.Scihub.init();
     }, false);
 }
+
+alert("test???");
 
 module.exports = Zotero.Scihub;
